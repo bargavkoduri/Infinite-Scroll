@@ -4,45 +4,44 @@ import "./list.css";
 
 export default function List() {
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const handleScroll = () => {
     if (
       Math.ceil(window.innerHeight + document.documentElement.scrollTop) !==
         document.documentElement.offsetHeight ||
       loading
-    )
+    ) {
       return;
-    setLoading(true);
-  };
-
-  const helperfun = async () => {
-    const resp = await axios.get(
-      "https://randomuser.me/api/?page=1&results=10&seed=abc"
-    );
-    setList(resp.data.results);
+    } else {
+      setLoading(true);
+    }
   };
 
   const fetchMoreData = async () => {
     const resp = await axios.get(
       `https://randomuser.me/api/?page=${
-        (list.length / 10) + 1
+        list.length / 10 + 1
       }&results=10&seed=1`
     );
     setList([...list, ...resp.data.results]);
-    setLoading(false);
   };
 
   useEffect(() => {
-    helperfun();
-    window.addEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (loading === true) {
+    if (list.length === 0) {
+      fetchMoreData();
+      window.addEventListener("scroll", handleScroll);
+      setLoading(false);
+    } else if (loading === true) {
       fetchMoreData();
     }
   }, [loading]);
+
+  useEffect(() => {
+    if (list.length !== 0) {
+      setLoading(false);
+    }
+  }, [list]);
 
   return (
     <div className="cont-list">
@@ -55,14 +54,21 @@ export default function List() {
               </h3>
               <a className="user-email">{user.email}</a>
             </div>
-            <img src={user.picture.large} className="user-image col-1" alt="Profile "/>
+            <img
+              src={user.picture.large}
+              className="user-image col-1"
+              alt="Profile "
+            />
           </div>
         );
       })}
 
-      <div className="loader" style={{
-        display : loading === false ? "none" : ""
-      }}></div>
+      <div
+        className="loader"
+        style={{
+          display: loading === false && list.length !== 0 ? "none" : "",
+        }}
+      ></div>
     </div>
   );
 }

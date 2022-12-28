@@ -14,7 +14,7 @@ export default function Home(){
           <span className="navbar-brand mb-0 h1" style={{ marginLeft: "20px" }}>
             Infinite Scroll Bar
           </span>
-          <div style={{ color: "white", marginRight: "20px" }} onClick={() => {
+          <div className="logouttxt" style={{ color: "white", marginRight: "20px" }} onClick={() => {
             navigate("/")
           }}>
             Logout
@@ -25,7 +25,7 @@ export default function Home(){
       </div>
     ) : (
       <div>
-        <h2>Error</h2>
+        <h2 style={{marginTop : "20px"}}>Forbidden</h2>
       </div>
     );
 }
