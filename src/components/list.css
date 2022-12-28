@@ -1,0 +1,46 @@
+.cont-list{
+    display: flex; 
+    flex-direction: column;
+    padding: 4%;
+}
+
+.user{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: 0 0 30px 0;
+    background-color: #eee;
+    padding: 2%;
+    border-radius: 20px;
+}
+
+.user-image{
+    border-radius: 50%;
+    height: 70px;
+    width: 90px;
+}
+
+.user-name{
+    margin-top: 10px;
+}
+
+.user-email{
+    font-size: 13px;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.loader {
+  margin: auto;
+  border: 10px solid #EAF0F6;
+  border-radius: 50%;
+  border-top: 10px solid #FF7A59;
+  width: 70px;
+  height: 70px;
+  animation: spinner 1.5s linear infinite;
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
