@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Login only works for usernmae : foo and password : bar
+Login only works for username : foo and password : bar
 
 ## Available Scripts
 
